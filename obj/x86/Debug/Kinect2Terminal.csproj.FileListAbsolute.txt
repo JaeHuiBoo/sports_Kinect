@@ -178,3 +178,22 @@ C:\Users\park\Downloads\Kinect2Terminal2-20210714 (1)\obj\x86\Debug\Kinect2Termi
 C:\Users\park\Downloads\Kinect2Terminal2-20210714 (1)\obj\x86\Debug\Kinect2Terminal.csproj.CopyComplete
 C:\Users\park\Downloads\Kinect2Terminal2-20210714 (1)\obj\x86\Debug\Kinect2Terminal.exe
 C:\Users\park\Downloads\Kinect2Terminal2-20210714 (1)\obj\x86\Debug\Kinect2Terminal.pdb
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\bin\Debug\Kinect2Terminal.exe.config
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\bin\Debug\Kinect2Terminal.exe
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\bin\Debug\Kinect2Terminal.pdb
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\bin\Debug\Microsoft.Kinect.dll
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\bin\Debug\Microsoft.Kinect.xml
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.csprojAssemblyReference.cache
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\ImageViewer.g.cs
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal_MarkupCompile.cache
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal_MarkupCompile.lref
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\ImageViewer.baml
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.g.resources
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\KinectTerminal.KinectTerminal.resources
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\KinectTerminal.Properties.Resources.resources
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\ToggleButtonTestForm.ToggleButton.resources
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.csproj.GenerateResource.cache
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.csproj.CoreCompileInputs.cache
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.csproj.CopyComplete
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.exe
+C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\Kinect2Terminal.pdb
