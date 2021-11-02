@@ -4,7 +4,7 @@
 winexe
 C#
 .cs
-C:\Users\park\Downloads\Kinect2Terminal2-20210731\obj\x86\Debug\
+D:\sports_user_evaluation\sports_Kinect\obj\x86\Debug\
 KinectTerminal
 none
 false
@@ -16,5 +16,5 @@ DEBUG;TRACE
 18830734856
 ImageViewer.xaml;
 
-False
+True
 
