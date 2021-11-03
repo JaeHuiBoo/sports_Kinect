@@ -395,7 +395,6 @@ namespace KinectTerminal
                     sumY=absY+sumY;
                     sumZ=absZ+sumZ;
                   
-
                     x=diffX;
                     y=diffY;
                     z=diffZ;
@@ -428,6 +427,7 @@ namespace KinectTerminal
                     kraValue=getKra;
 
                 }
+
                 sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}"," ", "sumX","sumY","sumZ","euculidDistance","processTime","velocity","elaSum","elaVelocity","eraSum","eraVelocity","klaSum","klaVelocity","kraSum","kraVelocity");
                 sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", value,sumX,sumY,sumZ,euculidDistance,processTime,euculidDistance/processTime,elaSum,elaSum/processTime,eraSum,eraSum/processTime,klaSum,klaSum/processTime,kraSum,kraSum/processTime);
                 
