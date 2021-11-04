@@ -27,6 +27,8 @@ namespace KinectTerminal
         private List<PoseFeature> featureList = new List<PoseFeature>();
         private List<double[]> rateList = new List<double[]>();
         private List<PoseDetailRate> detailRateList = new List<PoseDetailRate>();
+        private List<double> skeletonVelocityList = new List<double>();
+        private List<double> EDistance = new List<double>();
         private float startTime;
         private float finishTime;
         private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
@@ -144,7 +146,18 @@ namespace KinectTerminal
                     rate[i] = kinect.PoseRate[i];
                 }
                 rateList.Add(rate); // end of rateList
+                if (stopwatch != null) { 
+                    if(stopwatch.ElapsedMilliseconds/1000.0f >= 180.0f)
+                    {
+                        timer1.Stop(); 
+                        toggleButton1.Checked = false;
+                        toggleButton1.Text = "Start Recording";
+                        stopwatch.Stop();
+                        this.toggleButton1_Click(toggleButton1, new EventArgs());
+                    }
+                }
             }
+
         }
         private void KinectIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -260,12 +273,14 @@ namespace KinectTerminal
                 System.Diagnostics.Trace.WriteLine("Space-Key Pressed");
                 if (toggleButton1.Checked) {
                     toggleButton1.Checked = false;
-                    toggleButton1.Text = "Stop";
+                    toggleButton1.Text = "StartRecording";
+                    
                 }
                 else
                 {
-                    toggleButton1.Checked = true;
-                    toggleButton1.Text = "Start Recording";
+                    toggleButton1.Checked = true; //true일 때, running 한다는 의미.
+                    toggleButton1.Text = "Stop";
+                    stopwatch.Stop();
                 }
                 this.toggleButton1_Click(toggleButton1, new EventArgs());
 
@@ -279,6 +294,7 @@ namespace KinectTerminal
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+
         private void toggleButton1_Click(object sender, EventArgs e)
         {
             if (toggleButton1.Checked)   // start recording when checked
@@ -287,6 +303,7 @@ namespace KinectTerminal
                 timer1.Start(); // start timer
                 timer1.Interval = 10;
                 System.Diagnostics.Trace.WriteLine("Timer start " + DateTime.Now.ToString());
+                EDistance.Clear();
                 stopwatch.Reset();
                 stopwatch.Start();
             }
@@ -294,8 +311,8 @@ namespace KinectTerminal
             {
                 // stop recording & save into the file
                 timer1.Stop(); // stop timer
-                System.Diagnostics.Trace.WriteLine("Timer stop");
                 stopwatch.Stop();
+                System.Diagnostics.Trace.WriteLine("Timer stop");
 
                 float processTime = stopwatch.ElapsedMilliseconds/1000.0f;
 
@@ -373,31 +390,62 @@ namespace KinectTerminal
 
                 var euculidDistance = 0.0;
 
-                foreach ( var skeleton in skeletonList){
-                    var diffX = skeleton.xJoints[1].X;
-                    var diffY = skeleton.xJoints[1].Y;
-                    var diffZ = skeleton.xJoints[1].Z;
+                for(int i = 0; i < 25; i++) { 
+                    euculidDistance = 0.0;
+                   foreach ( var skeleton in skeletonList){
+                        var diffX = skeleton.xJoints[i].X;
+                        var diffY = skeleton.xJoints[i].Y;
+                        var diffZ = skeleton.xJoints[i].Z;
 
-                    var absX = Math.Abs(diffX - x);
-                    var absY = Math.Abs(diffY - y);
-                    var absZ = Math.Abs(diffZ - z);
+                        var absX = Math.Abs(diffX - x);
+                        var absY = Math.Abs(diffY - y);
+                        var absZ = Math.Abs(diffZ - z);
 
-                    euculidDistance = (Math.Sqrt((absX * absX)+(absY * absY) + (absZ * absZ))) + euculidDistance;
+                        euculidDistance = (Math.Sqrt((absX * absX)+(absY * absY) + (absZ * absZ))) + euculidDistance;
 
-                    if(skeletonList.IndexOf(skeleton)==0){
-                         euculidDistance = 0.0;
-                         absX = 0.0;
-                         absY = 0.0;
-                         absZ = 0.0;
-                    }
+                        if(skeletonList.IndexOf(skeleton)==0){
+                             euculidDistance = 0.0;
+                             absX = 0.0;
+                             absY = 0.0;
+                             absZ = 0.0;
+                        }
                     
-                    sumX=absX+sumX;
-                    sumY=absY+sumY;
-                    sumZ=absZ+sumZ;
+                        sumX=absX+sumX;
+                        sumY=absY+sumY;
+                        sumZ=absZ+sumZ;
                   
-                    x=diffX;
-                    y=diffY;
-                    z=diffZ;
+
+                        x=diffX;
+                        y=diffY;
+                        z=diffZ;
+                    }
+                   EDistance.Add(euculidDistance);
+                }
+                double euculidDistance_lowerbody = 0.0;
+                double euculidDistance_upperbody = 0.0;
+                for(int k =0;k<EDistance.Count;k++)
+                {
+                    switch (k)
+                            {
+                                case 1:
+                                case 3:
+                                case 4:
+                                case 5:
+                                case 6:
+                                case 8:
+                                case 9:
+                                case 10:
+                                        euculidDistance_upperbody+=EDistance[k];
+                                        break;
+                                case 12:
+                                case 13:
+                                case 14:
+                                case 16:
+                                case 17:
+                                case 18:
+                                        euculidDistance_lowerbody+=EDistance[k];
+                                        break;
+                            }
                 }
 
                 foreach (var feature in featureList)
@@ -427,13 +475,31 @@ namespace KinectTerminal
                     kraValue=getKra;
 
                 }
-
-                sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}"," ", "sumX","sumY","sumZ","euculidDistance","processTime","velocity","elaSum","elaVelocity","eraSum","eraVelocity","klaSum","klaVelocity","kraSum","kraVelocity");
-                sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14}", value,sumX,sumY,sumZ,euculidDistance,processTime,euculidDistance/processTime,elaSum,elaSum/processTime,eraSum,eraSum/processTime,klaSum,klaSum/processTime,kraSum,kraSum/processTime);
+                Console.WriteLine("\n");
+                Console.WriteLine("length of EDistance: "+EDistance.Count);
+                sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37}"," ","processtime","EDistance_SpineBase","EDistance_SpineMid","EDistance_Neck","EDistance_Head","EDistance_ShoulderLeft","EDistance_ElbowLeft","EDistance_WristLeft","EDistance_HandLeft","EDistance_ShoulderRight","EDistance_ElbowRight","EDistance_WristRight","EDistance_HandRight","EDistance_HipLeft","EDistance_KneeLeft","EDistance_AnkleLeft","EDistance_FootLeft","EDistance_HipRight","EDistance_KneeRight","EDistance_AnkleRight","EDistance_FootRight","EDistance_SpineShoulder","EDistance_HandTipLeft","EDistance_ThumbLeft","EDistance_HandTipRight","EDistance_ThumbRight","EDistance_lowerbody","EDistance_upperbody","EDistance_sum","elaSum","elaVelocity","eraSum","eraVelocity","klaSum","klaVelocity","kraSum","kraVelocity");
+                sw.WriteLine("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24},{25},{26},{27},{28},{29},{30},{31},{32},{33},{34},{35},{36},{37}", value,processTime,EDistance[0],EDistance[1],EDistance[2],EDistance[3],EDistance[4],EDistance[5],EDistance[6],EDistance[7],EDistance[8],EDistance[9],EDistance[10],EDistance[11],EDistance[12],EDistance[13],EDistance[14],EDistance[15],EDistance[16],EDistance[17],EDistance[18],EDistance[19],EDistance[20],EDistance[21],EDistance[22],EDistance[23],EDistance[24],euculidDistance_lowerbody,euculidDistance_upperbody,euculidDistance_lowerbody+euculidDistance_upperbody,elaSum,elaSum/processTime,eraSum,eraSum/processTime,klaSum,klaSum/processTime,kraSum,kraSum/processTime);
                 
                 sw.Close();
                 
                 }
+
+                /*path = string.Format("c:\\kinect_origin\\kinect_skeletonVelocity_{0:D4}{1:D2}{2:D2}{3:D2}{4:D2}{5:D2}.csv", date.Year, date.Month, date.Day, date.Hour, date.Minute, date.Second);
+                using (FileStream fs = new FileStream(path, FileMode.CreateNew, FileAccess.Write))
+                {
+                        StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.Default);
+                        foreach(var skeleton in skeletonList)
+                        {
+                            skeletonVelocityList.Clear();
+                            int i = skeletonList.IndexOf(skeleton);
+                            if (i!=0)
+                            {
+                                skeletonVelocityList.Add((Math.Abs(skeleton[i-1]-skeleton[i]))/0.01f);
+                                skeleton[i-1]
+                            }
+                        }
+                        sw.Close();
+                }*/
 
               
                 rateList.Clear();
@@ -445,6 +511,7 @@ namespace KinectTerminal
                 MessageBox.Show("포즈데이터를 저장했습니다.\n" + DateTime.Now.ToString(), path);
                 }
             }
+        
         }
 
         public static DialogResult InputBox(string title, string content, ref string value)
