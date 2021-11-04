@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Clean up any resources being used.
+        /// 사용 중인 모든 리소스를 정리합니다.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -24,7 +24,7 @@
 
         /// <summary> 
         /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
+        /// 코드 편집기를 사용하여 이 메서드의 내용을 입력합니다.
         /// </summary>
         private void InitializeComponent()
         {

@@ -198,7 +198,7 @@ namespace KinectModule
                 else
                 {
                     bool _isNowSend = false;
-                    if ((DateTime.Now - lastSend[_ill.Key]).TotalSeconds > 0.05)
+                    if ((DateTime.Now - lastSend[_ill.Key]).TotalSeconds > 0.05) 
                         _isNowSend = true;
 
                     if (_isNowSend)
@@ -454,8 +454,8 @@ namespace KinectModule
                 {
                     if (minS[type].X > skelList.Second[_i - 1][type].X)
                     {
-                        minS = skelList.Second[_i - 1];
-                        minT = skelList.First[_i - 1];
+                        minS = skelList.Second[_i - 1];             
+                        minT = skelList.First[_i - 1];              
                     }
 
                     if (maxS[type].X < skelList.Second[_i - 1][type].X)
@@ -494,6 +494,7 @@ namespace KinectModule
                 }
             }
         }
+        
         /*private int FindGesture(ValuePair<List<DateTime>, List<XSkeleton>> skelList)
         {   
             //최소한 데이터는 0.5초는 쌓여야 한다.
@@ -590,15 +591,15 @@ namespace KinectModule
             if (KinectPose.PoseList != null)
             {
                 Dictionary<KinectPoseName, ValuePair<double, List<double>>> PoseMatchingRates = new Dictionary<KinectPoseName, ValuePair<double, List<double>>>();
-                PoseDetailRates.CurrentTime = DateTime.Now; // must store currenttime into PoseDetailRates, otherwise crash
+                PoseDetailRates.CurrentTime = DateTime.Now; // 현재 시간을 PoseDetailRates에 저장해야 합니다. 그렇지 않으면 충돌이 발생합니다.
                 ValuePair<double, List<double>> poseMatchingRate;
                 for (int index=0; index < KinectPose.PoseList.Count; index++)
                 {
-                    KinectPoseName poseName = KinectPose.PoseList[index].PoseName;
+                    KinectPoseName poseName = KinectPose.PoseList[index].PoseName; // Poselist에서 posename을 poseName에 할당
                     //System.Diagnostics.Trace.Write("KinectPoseName = " + poseName.ToString());
                     poseMatchingRate = KinectPose.PoseMatchingRate(poseName, featureList);
                     // add PoseMatchingRates per pose
-                    PoseMatchingRates.Add(poseName, poseMatchingRate);
+                    PoseMatchingRates.Add(poseName, poseMatchingRate);  // 포즈 이름당 포즈 일치율 추가
 
                     Rate[index] = poseMatchingRate.First;
                     //System.Diagnostics.Trace.Write(" Rate = " + Rate[index].ToString());

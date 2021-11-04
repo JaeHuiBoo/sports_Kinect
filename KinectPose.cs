@@ -146,7 +146,7 @@ namespace KinectModule
             for (int i = 0; i < 21; i++)
             {
                 byte[] feature = BitConverter.GetBytes(source.featurePoints[i]);
-                Array.Copy(feature, 0, value, i * sizeof(double), sizeof(double));
+                Array.Copy(feature, 0, value, i * sizeof(double), sizeof(double)); // 배열 feature의 0번째 값부터 sizeof(double)개를, 배열 value의 i*sizeof(double)번째부터 복사
             }
 
             return value;
@@ -162,7 +162,7 @@ namespace KinectModule
 
             for (int i = 0; i < 21; i++)
             {
-                value[i] = System.BitConverter.ToDouble(source, sizeof(double) * i);
+                value[i] = System.BitConverter.ToDouble(source, sizeof(double) * i); // byte 배열 source를 double값 형식으로 변환
             }
 
             return value;

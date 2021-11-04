@@ -340,7 +340,7 @@ public class KinectGestures
     /// Gets the list of gesture joint indexes.
     /// </summary>
     /// <returns>The needed joint indexes.</returns>
-    public virtual int[] GetNeededJointIndexes()
+    public virtual int[] GetNeededJointIndexes() //ì¸ë±ìŠ¤  ì„¤ì •
     {
         leftHandIndex = (int)(JointType.HandLeft);
         rightHandIndex = (int)(JointType.HandRight);
@@ -1970,7 +1970,7 @@ public class KinectGestures
                 }
                 break;
 
-            case Gestures.Mansae:       // µÎ ÆÈ À§·Î µå´Â ÀÚ¼¼. RHPU LHPU È°¿ëÇÔ
+            case Gestures.Mansae:       // ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ú¼ï¿½. RHPU LHPU È°ï¿½ï¿½ï¿½ï¿½
                 switch (gestureData.state)
                 {
                     case 0:
@@ -1983,7 +1983,7 @@ public class KinectGestures
                            )
 
                         {
-                            SetGestureJoint(ref gestureData, timestamp, shoulderCenterIndex, jointsPos[shoulderCenterIndex]); //±âÁ¸ÀÇ ¿ŞÂÊ È¤Àº ¿À¸¥ÂÊ ¾îƒÆ Á¶ÀÎÆ®ÀÎµ¦½º ´ë½Å ¾î±ú Áß½ÉÀ» ±âÁØÀ¸·ÎÇÔ. ÀÌºÎºĞÀº µ¿ÀÛ¿¡ ¹ÌÄ¡´Â ¿µÇâÀÌ ¾øÀ½.
+                            SetGestureJoint(ref gestureData, timestamp, shoulderCenterIndex, jointsPos[shoulderCenterIndex]); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ÌºÎºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
                         }
                         break;
 
@@ -1991,7 +1991,7 @@ public class KinectGestures
                         a = Vector3.Angle((jointsPos[rightHandIndex] - jointsPos[rightShoulderIndex]), Vector3.up);
                         b = Vector3.Angle((jointsPos[rightShoulderIndex] - jointsPos[rightElbowIndex]), (jointsPos[rightHandIndex] - jointsPos[rightElbowIndex]));
                         c = Vector3.Angle((jointsPos[leftHandIndex] - jointsPos[leftShoulderIndex]), Vector3.up);
-                        d = Vector3.Angle((jointsPos[leftShoulderIndex] - jointsPos[leftElbowIndex]), (jointsPos[leftHandIndex] - jointsPos[leftElbowIndex]));      //¼ÕÀÌ »¸´Â ¹æÇâ°¢, ÆÈ²ŞÄ¡ °üÀı°¢À» ¾çÆÈ ÀüºÎ ±¸ÇÔ.
+                        d = Vector3.Angle((jointsPos[leftShoulderIndex] - jointsPos[leftElbowIndex]), (jointsPos[leftHandIndex] - jointsPos[leftElbowIndex]));      //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¢, ï¿½È²ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
                         bool isInPose = jointsTracked[rightElbowIndex] && jointsTracked[rightHandIndex] && jointsTracked[rightShoulderIndex] && jointsTracked[leftElbowIndex] && jointsTracked[leftHandIndex] && jointsTracked[leftShoulderIndex] &&
                         a < 40.0f && b > 130.0f;
@@ -2009,7 +2009,7 @@ public class KinectGestures
                 }
                 break;
 
-            case Gestures.LRnaranhee:       //ÁÂ¿ì·Î ³ª¶õÈ÷
+            case Gestures.LRnaranhee:       //ï¿½Â¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 switch (gestureData.state)
                 {
                     case 0:  // gesture detection
