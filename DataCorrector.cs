@@ -106,7 +106,7 @@ namespace KinectModule
             double y = a.Position.Y - b.Position.Y;
             double z = a.Position.Z - b.Position.Z;
 
-            return Math.Sqrt(x * x + y * y + z * z);
+            return Math.Sqrt(x * x + y * y + z * z);  // a와 b사이의 거리
         }
 
         void _createConf()
@@ -165,7 +165,7 @@ namespace KinectModule
 
                 XmlElement _root = _reader.DocumentElement;
 
-                if (_root.ChildNodes.Count < 2)
+                if (_root.ChildNodes.Count < 2) //자식노드가 2개보다 적을 때
                 {
                     _createConf();
                     _reader.Load(configurationPath);

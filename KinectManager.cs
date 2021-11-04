@@ -49,7 +49,7 @@ namespace KinectModule
             get
             {
                 if (_sensor == null)
-                    return false;
+                    return false; 
 
                 if (_sensor.IsOpen)
                     return true;
