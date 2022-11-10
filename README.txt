@@ -1,11 +1,16 @@
-Kinect2 SDK »ç¿ë
+#Comparative Evaluation of Exercise Effects of Motion-based Sports Game
+: Collective results of the users' exercise effects by analyzing the users' Electrocardiogram sensor and the Kinect sensor's skeletal information using a motion-based sports game that is played individually and as a team
 
-KinectPose.cs ¾È¿¡ 12Á¾ ÀÚ¼¼ÀÎ½Ä Á¤º¸ 
 
-KinectDataAnalyzer.cs ¾È¿¡ FindPose ¿¡¼­ Å°³ØÆ® ½ºÄÌ·¹ÅæÀ¸·ÎºÎÅÍ Á¤º¸¸¦ ÃßÃâÇØ¼­ ÀÚ¼¼ÀÎ½Ä¿¡ »ç¿ë
+
+Kinect2 SDK ì‚¬ìš©
+
+KinectPose.cs ì•ˆì— 12ì¢… ìì„¸ì¸ì‹ ì •ë³´ 
+
+KinectDataAnalyzer.cs ì•ˆì— FindPose ì—ì„œ í‚¤ë„¥íŠ¸ ìŠ¤ì¼ˆë ˆí†¤ìœ¼ë¡œë¶€í„° ì •ë³´ë¥¼ ì¶”ì¶œí•´ì„œ ìì„¸ì¸ì‹ì— ì‚¬ìš©
 
         /// <summary>
-        /// 12Á¾ ¿îµ¿ÀÚ¼¼ (BOTH_SIDE_OUT, BOTH_SIDE_UP, BOTH_SIDE_FRONT, BOTH SIDE DOWN, LEFT_HAND_UP, RIGHT_HAND_UP, LEFT_KNEE_UP, RIGHT_KNEE_UP, LEFT_LEG_AB, RIGHT_LEG_AB, SQUAT, CLAP)
+        /// 12ì¢… ìš´ë™ìì„¸ (BOTH_SIDE_OUT, BOTH_SIDE_UP, BOTH_SIDE_FRONT, BOTH SIDE DOWN, LEFT_HAND_UP, RIGHT_HAND_UP, LEFT_KNEE_UP, RIGHT_KNEE_UP, LEFT_LEG_AB, RIGHT_LEG_AB, SQUAT, CLAP)
         /// </summary>
         /// <param name="skelList"></param>
         /// <returns></returns>
