@@ -1,4 +1,4 @@
-#Comparative Evaluation of Exercise Effects of Motion-based Sports Game
+# Comparative Evaluation of Exercise Effects of Motion-based Sports Game
 : Collective results of the users' exercise effects by analyzing the users' Electrocardiogram sensor and the Kinect sensor's skeletal information using a motion-based sports game that is played individually and as a team
 
 
